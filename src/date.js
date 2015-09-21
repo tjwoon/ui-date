@@ -19,7 +19,9 @@ angular.module('ui.date', [])
     require:'?ngModel',
     link:function (scope, element, attrs, controller) {
       var getOptions = function () {
-        return angular.extend({}, uiDateConfig, scope.$eval(attrs.uiDate));
+        var opts = {};
+        if(attrs.uiDateFormat) opts.dateFormat = attrs.uiDateFormat;
+        return angular.extend(opts, uiDateConfig, scope.$eval(attrs.uiDate));
       };
       var initDateWidget = function () {
         var showing = false;
